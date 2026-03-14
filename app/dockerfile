@@ -1,28 +1,30 @@
-## first stage build
-
 FROM python:3.12-slim AS build
 
 WORKDIR /app
 
-COPY requirements.txt .
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"  
+##env used ti create an easy file path for the dependencies so i can copy them in the second stage build
 
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY src /app/
+COPY src /app/src
 
-## stage2 multi stage build.
 
-FROM python:3.12-slim AS stage
+##stage 2 build
+
+FROM python:3.12-slim
 
 WORKDIR /app
 
+COPY --from=build /opt/venv /opt/venv
 COPY --from=build /app /app
 
-## running on a non root user
+ENV PATH="/opt/venv/bin:$PATH"
 
 USER 1001
 
 EXPOSE 8080
 
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
-
+CMD ["python", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
