@@ -5,6 +5,13 @@ resource "aws_lb" "alb" {
     subnets = [  ]
 }
 
+resource "aws_lb_target_group" "tg" {
+    name = "alb-tg"
+    port = 443
+    protocol = "HTTPS"
+    vpc_id = var.aws_vpc.id
+  
+}
 
 resource "aws_lb_listener" "http" {
     load_balancer_arn = aws_lb.alb.arn
@@ -29,9 +36,10 @@ resource "aws_lb_listener" "HTTPS" {
 
     default_action {
       type = "forward"
-      target_group_arn = 
+      target_group_arn = aws_lb_target_group.tg.arn
     }
 
   
 }
+
   
