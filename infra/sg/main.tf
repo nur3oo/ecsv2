@@ -39,3 +39,29 @@ resource "aws_security_group" "ecs" {
   
 }
 
+resource "aws_security_group" "endpoint" {
+    name = "endpoint-sg"
+    description = "the security group for my vpc endpoint"
+    vpc_id = var.vpc_id
+  
+  ingress {
+    description = "only talk to aws services on port 443"
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = var.private_subnet_cidrs[*].id
+
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "vpc-endpoint-sg"
+  }
+}
+
