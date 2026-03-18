@@ -13,8 +13,9 @@ resource "aws_security_group" "alb" {
     
 
     egress {
-      from_port = 0
-      to_port = 0
+      description = "to talk to the ecs task" 
+      from_port = 8080
+      to_port = 8080
       protocol = "-1"
       cidr_blocks = ["0.0.0.0/0"]
 
@@ -30,8 +31,8 @@ resource "aws_security_group" "ecs" {
 
   ingress {
     description = "sg for ecs from alb"
-    from_port = 3000
-    to_port   = 3000
+    from_port = 8080
+    to_port   = 8080
     protocol  = "tcp"
     security_groups = [aws_security_group.alb.id]
       }
