@@ -10,6 +10,20 @@ resource "aws_lb_target_group" "tg" {
     port = 443
     protocol = "HTTPS"
     vpc_id = var.aws_vpc.id
+    target_type = "ip"
+
+      health_check {
+        protocol = "HTTPS"
+        port = "traffic-port"
+        path = "/"
+        matcher = "200-399"
+        interval = 30
+        timeout = 5
+        healthy_threshold = 2
+        unhealthy_threshold = 2
+
+      }
+
   
 }
 
@@ -29,10 +43,11 @@ resource "aws_lb_listener" "http" {
   }
 }
 
-resource "aws_lb_listener" "HTTPS" {
+resource "aws_lb_listener" "https" {
     load_balancer_arn = aws_lb.alb.arn
     port = 443
     protocol = "HTTPS"
+    certificate_arn = 
 
     default_action {
       type = "forward"
