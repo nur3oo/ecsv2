@@ -8,6 +8,7 @@ data "aws_availability_zones" "available" {
 resource "aws_vpc" "main" {
     cidr_block = "10.0.0.0/16"
     
+    
 }
 
 resource "aws_subnet" "public" {
@@ -28,6 +29,7 @@ resource "aws_subnet" "private" {
 
 resource "aws_vpc_endpoint" "endpoint" {
   vpc_id = var.vpc_id
-  subnet_ids = 
+  vpc_endpoint_type = "Interface"
+  subnet_ids = var.private_subnets[*].id
   
 }
