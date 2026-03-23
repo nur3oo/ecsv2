@@ -1,8 +1,8 @@
 resource "aws_lb" "alb" {
     name = "app-alb"
     load_balancer_type = "application"  
-    security_groups = [  ]
-    subnets = [  ]
+    security_groups = [var.alb_sg]
+    subnets = var.public_subnets
 }
 
 resource "aws_lb_target_group" "tg" {
