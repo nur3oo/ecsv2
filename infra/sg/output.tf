@@ -15,3 +15,14 @@ output "ecs_sg" {
     value = aws_security_group.ecs.id
   
 }
+
+output "rds_sg_id" {
+  description = "Security group is for RDS"
+  value       = aws_security_group.rds.id
+}
+
+output "redis_sg" {
+    description = "Security group for redis"
+    value = aws_security_group.rds.id
+  
+}

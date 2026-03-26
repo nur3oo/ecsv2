@@ -8,3 +8,13 @@ output "ecs_cluster_arn" {
   
 }
 
+output "task_definition" {
+    value = aws_ecs_task_definition.task.arn
+  
+}
+
+output "cloudwatch" {
+    value = aws_cloudwatch_log_group.ecs_cloudwatch.arn
+  
+}
+

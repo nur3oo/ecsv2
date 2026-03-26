@@ -1,6 +1,6 @@
 
 resource "aws_ecs_cluster" "cluster" {
-    name = "app-cluster"
+    name = var.cluster_name
   
 }
 
@@ -21,7 +21,7 @@ resource "aws_ecs_task_definition" "task" {
 
     container_definitions = jsonencode([{
   name      = "nur-app"
-  image     = 
+  image     = "${var.ecr_repository_url}:${var.image_tag}"
   essential = true
 
   portMappings = [{

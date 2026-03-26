@@ -3,6 +3,12 @@ variable "ecs_sg" {
   
 }
 
+variable "cluster_name" {
+    type = string
+    default = "app-cluster"
+  
+}
+
 variable "aws_lb_target_group" {
     type = string
   

@@ -89,3 +89,30 @@ resource "aws_security_group" "rds" {
     Name = "rds-sg"
   }
 }
+
+resource "aws_security_group" "redis" {
+  name        = "redis-sg"
+  description = "Allow Redis from ECS only"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    description     = "Redis from ECS tasks"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
+    security_groups = [aws_security_group.ecs.id]
+  }
+
+  egress {
+    description = "Allow all egress"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "redis-sg"
+  }
+}
+
