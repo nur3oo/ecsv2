@@ -8,7 +8,7 @@ resource "aws_elasticache_replication_group" "this" {
   port           = var.port
 
   subnet_group_name  = aws_elasticache_subnet_group.this.name
-  security_group_ids = [aws_security_group.redis.id]
+  security_group_ids = [var.redis_sg]
 
   num_cache_clusters         = var.num_cache_clusters
   multi_az_enabled           = var.multi_az_enabled

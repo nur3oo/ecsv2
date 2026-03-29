@@ -23,6 +23,6 @@ output "rds_sg_id" {
 
 output "redis_sg" {
     description = "Security group for redis"
-    value = aws_security_group.rds.id
+    value = aws_security_group.redis.id
   
 }
