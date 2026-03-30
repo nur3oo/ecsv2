@@ -46,3 +46,8 @@ variable "image_tag" {
     default = "v1"
   
 }
+
+variable "aws_lb_blue_target_group" {
+    type = string
+  
+}

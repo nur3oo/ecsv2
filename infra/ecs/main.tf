@@ -63,8 +63,12 @@ resource "aws_ecs_service" "service" {
       assign_public_ip = false
     }
 
+    deployment_controller {
+      type = "CODE_DEPLOY"
+    }
+
     load_balancer {
-      target_group_arn = var.aws_lb_target_group
+      target_group_arn = var.aws_lb_blue_target_group
       container_name = var.container_name
       container_port = var.container_port
     }
