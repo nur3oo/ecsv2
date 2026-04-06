@@ -50,7 +50,41 @@ module "codedeploy" {
 module "database" {
     source = "./database"
     vpc_id = module.vpc.vpc_id
+    private_subnet_ids = module.vpc.private_subnet_ids
+    db_name = var.db_name
+    db_username = var.db_username
+    db_password = var.db_password
 
+}
 
+module "ecr" {
+    source = "./ecr"
+
+  
+}
+module "iam" {
+    source = "./iam"
+
+ 
+}
+
+module "redis" {
+    source = "./redis"
+    name = var.name
+    redis_sg = module.sg.redis_sg
+    private_subnet_ids = module.vpc.private_subnet_ids
+  
+}
+
+module "sg" {
+  source = "./sg"
+  vpc_id = module.vpc.vpc_id
+
+}
+
+module "vpc" {
+    source = "./vpc"
+    vpc_id = var.vpc_id
+    endpoint_sg = 
   
 }
