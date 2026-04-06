@@ -3,7 +3,7 @@ resource "aws_codedeploy_app" "deploy" {
     name = "app"  
 }
 
-resource "aws_codedeploy_deployment_group" "example" {
+resource "aws_codedeploy_deployment_group" "group" {
   app_name               = var.codedeploy_name
   deployment_config_name = var.deployment_config_name
   deployment_group_name  = var.deployment_group_name

@@ -11,3 +11,8 @@ variable "public_subnets" {
 variable "alb_sg" {
     type = string  
 }
+
+variable "acm_cert" {
+    type = string
+  
+}
