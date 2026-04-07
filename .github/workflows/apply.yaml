@@ -22,3 +22,27 @@ jobs:
     if: ${{ github.event.inputs.confirm == 'Apply' }}
     runs-on: ubuntu-latest
 
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+
+      - name: Terraform fmt
+        run: terraform fmt -recursive
+
+
+      - name: Terraform init
+        run: terraform init -upgrade -input=false
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform apply
+        run: terraform apply -auto-approve tfplan
+
+
+
