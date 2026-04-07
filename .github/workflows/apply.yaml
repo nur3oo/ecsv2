@@ -1,0 +1,24 @@
+name: Terraform Apply workflow
+
+on : 
+    workflow_dispatch:
+      inputs:
+        confirm:
+          description: Type Apply to run
+          required: True
+
+permissions:
+  id-token: write
+
+jobs:
+  terraform-apply:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infra
+
+jobs:
+  apply:
+    if: ${{ github.event.inputs.confirm == 'Apply' }}
+    runs-on: ubuntu-latest
+
