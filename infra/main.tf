@@ -4,7 +4,6 @@ module "ecs" {
     ecs_sg = module.sg.ecs_sg
     private_subnet_ids = module.vpc.private_subnet_ids
     aws_lb_blue_target_group = module.alb.aws_lb_blue_target_group
-    aws_lb_target_group = 
   
 }
 
@@ -88,5 +87,11 @@ module "vpc" {
     endpoint_sg = module.sg.endpoint_sg
     private_subnets = var.private_subnet_ids
     public_subnets = var.public_subnets_ids
+  
+}
+
+module "waf" {
+    source = "./waf"
+    aws_alb = module.alb.aws_lb
   
 }
