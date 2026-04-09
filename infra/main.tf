@@ -85,6 +85,8 @@ module "sg" {
 module "vpc" {
     source = "./vpc"
     vpc_id = var.vpc_id
-    endpoint_sg = 
+    endpoint_sg = module.sg.endpoint_sg
+    private_subnets = var.private_subnet_ids
+    public_subnets = var.public_subnets_ids
   
 }
