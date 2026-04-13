@@ -1,0 +1,64 @@
+name: Terraform Plan workflow
+
+on : 
+    workflow_dispatch:
+      inputs:
+        confirm:
+          description: Type Plan to run
+          required: True
+
+permissions:
+  id-token: write
+
+
+env:
+  AWS_REGION: ${{vars.AWS_REGION}}
+
+
+jobs:
+  apply:
+    if: ${{github.event.input.confirm == 'Plan'}}
+    runs-on: ubuntu-latest
+
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+
+
+    default:
+      run:
+        working-directory: ./infra
+
+      
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: AWS credentials oidc
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.3
+          terraform_wrapper: false
+
+
+      - name: Terraform fmt
+        run: terraform fmt -recursive
+
+
+      - name: Terraform init
+        run: terraform init -upgrade -input=false
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform plan
+        run: terraform plan -out=tfplan
