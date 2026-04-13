@@ -54,11 +54,16 @@ ecsv2/
 ```
 
 Architecture
+
+```text
+
 Internet -> WAF -> ALB -> ECS Fargate (Blue/Green)
                                |
                          VPC Endpoints -> ECR, S3, CloudWatch
                                |
                          RDS (Postgres) + ElastiCache (Redis)
+
+```
 
 ## Features
 
@@ -69,16 +74,17 @@ Internet -> WAF -> ALB -> ECS Fargate (Blue/Green)
 
 
 ## CI/CD
-## CI/CD
 
 | Workflow      | Trigger        | What it does                          |
 |--------------|---------------|--------------------------------------|
-| push.yaml     | Push to main  | Builds and pushes Docker image to ECR |
-| plan.yaml     | Pull request  | Runs terraform plan                  |
-| apply.yaml    | Push to main  | Applies infrastructure changes       |
-| destroy.yaml  | Manual        | Tears down everything                |
+| push.yaml     | Workflow_dispatch  | Builds and pushes Docker image to ECR |
+| plan.yaml     | Workflow_dispatch | Runs terraform plan                  |
+| apply.yaml    | Workflow_dispatch  | Applies infrastructure changes       |
+| destroy.yaml  | Workflow_dispatch| Tears down everything                |
 
-GitHub OIDC handles AWS auth, no access keys stored anywhere.
+GitHub OIDC handles AWS auth, no access keys sthored anywhere.
+
+I chose Workflow dispatch because it eliminates accidental destroys and applies of infrastructure reducing costs for users.
 
 ## Tech Stack
 
