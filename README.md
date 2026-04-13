@@ -1,46 +1,85 @@
-# ecsv2
+URL Shortener — AWS ECS Fargate
+A production-grade URL shortener built on AWS ECS Fargate with zero-downtime deployments, full CI/CD, and security.
+
+Project Structure
+
+```text
 ecsv2/
 ├── .github/
 │   └── workflows/
-│       ├── apply.yaml          # Terraform apply 
-│       ├── destroy.yaml        # Terraform destroy (1 manual step cleanup)
-│       ├── plan.yaml           # Terraform plan 
-│       └── push.yaml           # Build & push Docker image to ECR
+│       ├── apply.yaml          # Terraform apply (on work_dispatch)
+│       ├── destroy.yaml        # Terraform destroy (1 step destroy)
+│       ├── plan.yaml           # Terraform plan (on work_dispatch)
+│       └── push.yaml           # Build & push to ECR
 │
 ├── app/
 │   ├── src/
-│   │   ├── main.py             # FastAPI app entrypoint
-│   │   ├── db.py               # Database connection & queries
+│   │   ├── main.py             # FastAPI entrypoint
+│   │   ├── db.py               # Database queries
 │   │   └── events.py           # App lifecycle events
 │   ├── tests/
-│   │   ├── test_api.py         # API endpoint tests
-│   │   └── test_db.py          # Database layer tests
-│   ├── dockerfile              # Production container build
-│   ├── docker-compose.yml      # Local development environment
-│   └── requirements.txt        # Python dependencies
+│   │   ├── test_api.py         # API tests
+│   │   └── test_db.py          # Database tests
+│   ├── dockerfile
+│   ├── docker-compose.yml
+│   └── requirements.txt
 │
 ├── infra/
-│   ├── main.tf                 # Root module wiring
-│   ├── variables.tf            # Root inputs
-│   ├── terraform.tfvars        # Local values (do not commit secrets)
-│   ├── provider.tf             # AWS provider configuration
-│   ├── output.tf               # Root outputs
-│   │
-│   ├── bootstrap/              # One-time bootstrap (S3 bucket + DynamoDB lock table)
-│   ├── backend/                # Remote S3 state backend (state locking enabled)
-│   │
+│   ├── main.tf
+│   ├── bootstrap/              # S3 bucket + state locking
+│   ├── backend/                # Remote state config
 │   └── modules/
-│       ├── vpc/                # VPC + public/private subnets + VPC endpoints
-│       ├── sg/                 # Security groups (ALB / ECS / RDS / Redis rules)
-│       ├── iam/                # ECS task & execution roles (least privilege)
-│       ├── ecr/                # ECR repository
-│       ├── alb/                # ALB + target groups + listeners
-│       ├── ecs/                # ECS cluster / service / task definition (Fargate)
-│       ├── codedeploy/         # Blue/green deployments + health checks + auto-rollback
-│       ├── waf/                # WAF rules (firewall protection)
-│       ├── certs/              # TLS certificate (ACM) + DNS validation
+│       ├── vpc/                # VPC + subnets + VPC endpoints
+│       ├── sg/                 # Security groups
+│       ├── iam/                # Least privilege roles
+│       ├── ecr/                # Container registry
+│       ├── alb/                # Load balancer (80/443)
+│       ├── ecs/                # Fargate cluster + service
+│       ├── codedeploy/         # Blue/green + auto-rollback
+│       ├── waf/                # Firewall rules
+│       ├── certs/              # ACM + DNS validation
 │       ├── database/           # PostgreSQL (RDS)
-│       └── redis/              # Redis cache (ElastiCache)
-│
-├── .gitignore
+│       └── redis/              # ElastiCache
 └── README.md
+
+```
+
+Architecture
+Internet -> WAF -> ALB -> ECS Fargate (Blue/Green)
+                               |
+                         VPC Endpoints -> ECR, S3, CloudWatch
+                               |
+                         RDS (Postgres) + ElastiCache (Redis)
+
+## Features
+
+- Cost optimised — VPC Endpoints replace NAT Gateway, cutting data transfer costs
+- Zero downtime — Blue/green deployments with health checks and auto-rollback via CodeDeploy
+- Secure WAF, least privilege IAM, ACM TLS, GitHub OIDC (no hardcoded secrets)
+- Remote state  S3 backend with state locking
+
+
+## CI/CD
+## CI/CD
+
+| Workflow      | Trigger        | What it does                          |
+|--------------|---------------|--------------------------------------|
+| push.yaml     | Push to main  | Builds and pushes Docker image to ECR |
+| plan.yaml     | Pull request  | Runs terraform plan                  |
+| apply.yaml    | Push to main  | Applies infrastructure changes       |
+| destroy.yaml  | Manual        | Tears down everything                |
+
+GitHub OIDC handles AWS auth, no access keys stored anywhere.
+
+## Tech Stack
+
+| Layer        | Tech                         |
+|-------------|------------------------------|
+| Compute     | ECS Fargate                  |
+| App         | Python + FastAPI             |
+| Database    | PostgreSQL (RDS)             |
+| Cache       | Redis (ElastiCache)          |
+| Deployments | CodeDeploy (blue/green)      |
+| Firewall    | WAF                          |
+| IaC         | Terraform                    |
+| CI/CD       | GitHub Actions + OIDC        |
