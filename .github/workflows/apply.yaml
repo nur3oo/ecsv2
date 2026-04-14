@@ -18,7 +18,7 @@ env:
 
 jobs:
   apply:
-    if: ${{github.event.input.confirm == 'Apply'}}
+    if: ${{github.event.inputs.confirm == 'Apply'}}
     runs-on: ubuntu-latest
 
     env:

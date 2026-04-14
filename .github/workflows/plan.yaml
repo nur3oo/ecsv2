@@ -5,7 +5,7 @@ on:
     inputs:
       confirm:
         description: Type Plan to run
-        required: True
+        required: true
 
 permissions:
   id-token: write
@@ -18,7 +18,7 @@ env:
 
 jobs:
   apply:
-    if: ${{github.event.input.confirm == 'Plan'}}
+    if: ${{github.event.inputs.confirm == 'Plan'}}
     runs-on: ubuntu-latest
 
     env:
