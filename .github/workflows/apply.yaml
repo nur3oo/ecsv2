@@ -1,11 +1,11 @@
 name: Terraform Apply workflow
 
-on : 
-    workflow_dispatch:
-      inputs:
-        confirm:
-          description: Type Apply to run
-          required: True
+on: 
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type Apply to run
+        required: True
 
 permissions:
   id-token: write
