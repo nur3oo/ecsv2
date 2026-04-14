@@ -5,7 +5,7 @@ on:
     inputs:
       confirm:
         description: Type Apply to run
-        required: True
+        required: true
 
 permissions:
   id-token: write
@@ -25,7 +25,10 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-
+    
+    defaults:
+      run:
+        working-directory: ./infra
 
     steps:
 
