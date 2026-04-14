@@ -36,9 +36,3 @@ variable "region" {
     default = "eu-west-2"
   
 }
-
-variable "count" {
-    type = number
-    default = 2
-  
-}
