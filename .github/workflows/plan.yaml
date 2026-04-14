@@ -26,13 +26,6 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
 
-
-    default:
-      run:
-        working-directory: ./infra
-
-      
-
     steps:
 
       - name: Checkout
