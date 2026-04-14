@@ -9,10 +9,6 @@ variable "cluster_name" {
   
 }
 
-variable "aws_lb_target_group" {
-    type = string
-  
-}
 
 variable "container_name" {
     default = "nur-ecs2"
