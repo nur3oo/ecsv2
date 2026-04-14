@@ -4,7 +4,7 @@ module "ecs" {
     ecs_sg = module.sg.ecs_sg
     private_subnet_ids = module.vpc.private_subnet_ids
     aws_lb_blue_target_group = module.alb.aws_lb_blue_target_group
-    
+
 }
 
 module "alb" {
@@ -13,12 +13,6 @@ module "alb" {
     public_subnets = module.vpc.public_subnets
     acm_cert = module.acm.acm_cert
     alb_sg = module.sg.alb_sg
-  
-}
-
-module "backend" {
-    source = "./backend"
-
   
 }
 
