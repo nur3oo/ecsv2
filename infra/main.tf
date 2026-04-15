@@ -59,6 +59,7 @@ module "ecr" {
 }
 module "iam" {
     source = "./iam"
+    rds_pass = module.database.rds_pass
 
  
 }
