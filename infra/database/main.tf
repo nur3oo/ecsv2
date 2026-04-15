@@ -18,7 +18,7 @@ resource "aws_db_instance" "rds" {
 
   db_name  = var.db_name
   username = var.db_username
-  password = data.aws_secretsmanager_secret.db_password.secret_string
+  password = data.aws_secretsmanager_secret_version.db_password.secret_string
 
   db_subnet_group_name   = aws_db_subnet_group.rds.name
   vpc_security_group_ids = [var.rds_sg_id]
