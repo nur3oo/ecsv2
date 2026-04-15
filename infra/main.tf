@@ -2,7 +2,7 @@ module "ecs" {
     source = "./ecs"
     ecr_repository_url = module.ecr.ecr_repository_url
     ecs_sg = module.sg.ecs_sg
-    private_subnet_ids = module.vpc.private_subnets
+    private_subnet_ids = module.vpc.private_subnets_ids
     aws_lb_blue_target_group = module.alb.aws_lb_blue_target_group
     rds_pass = module.database.rds_pass
     ecs_execution_role_arn = module.iam.ecs_execution_role_arn
@@ -12,7 +12,7 @@ module "ecs" {
 module "alb" {
     source = "./alb"
     vpc_id =   module.vpc.vpc_id
-    public_subnets = module.vpc.public_subnets
+    public_subnets = module.vpc.public_subnets_ids
     acm_cert = module.certs.acm_cert
     alb_sg = module.sg.alb_sg
   
