@@ -12,12 +12,6 @@ variable "db_username" {
   default = "theuser"
 }
 
-variable "db_password" {
-  description = "master password"
-  sensitive   = true
-}
-
-
 ##redis
 
 variable "name" {
@@ -29,17 +23,12 @@ variable "name" {
 ##vpc
 
 variable "public_subnets_ids" {
-  type = string
+  type = list(string)
 
   
 }
 
 variable "private_subnet_ids" {
-  type = string
-  
-}
-
-variable "vpc_id" {
-  type = string
+  type = list(string)
   
 }

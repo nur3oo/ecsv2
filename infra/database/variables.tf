@@ -21,12 +21,6 @@ variable "db_username" {
   description = "Master username"
 }
 
-variable "db_password" {
-  description = "Master password"
-  sensitive   = true
-}
-
-
 variable "rds_sg_id" {
   type = string
   
