@@ -2,7 +2,7 @@ module "ecs" {
     source = "./ecs"
     ecr_repository_url = module.ecr.ecr_repository_url
     ecs_sg = module.sg.ecs_sg
-    private_subnet_ids = module.vpc.private_subnet_ids
+    private_subnet_ids = module.vpc.private_subnets
     aws_lb_blue_target_group = module.alb.aws_lb_blue_target_group
     rds_pass = module.database.rds_pass
     ecs_execution_role_arn = module.iam.ecs_execution_role_arn
@@ -45,7 +45,7 @@ module "codedeploy" {
 module "database" {
     source = "./database"
     vpc_id = module.vpc.vpc_id
-    private_subnet_ids = module.vpc.private_subnet_ids
+    private_subnet_ids = module.vpc.private_subnets
     db_name = var.db_name
     db_username = var.db_username
     db_password = var.db_password
@@ -68,7 +68,7 @@ module "redis" {
     source = "./redis"
     name = var.name
     redis_sg = module.sg.redis_sg
-    private_subnet_ids = module.vpc.private_subnet_ids
+    private_subnet_ids = module.vpc.private_subnets
   
 }
 
