@@ -9,7 +9,7 @@ resource "aws_iam_role_policy" "ecs_secrets" {
       Action = [
         "secretsmanager:GetSecretValue"
       ]
-      Resource = data.aws_secretsmanager_secret.db_password.arn
+      Resource = var.rds_pass
     }]
   })
 }
@@ -187,7 +187,7 @@ resource "aws_iam_role_policy" "ecs_task_secrets" {
       Action   = [
         "secretsmanager:GetSecretValue"
       ]
-      Resource = data.aws_secretsmanager_secret.db_password.arn
+      Resource = var.rds_pass
     }]
   })
 }
