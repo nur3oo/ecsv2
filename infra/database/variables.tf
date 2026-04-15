@@ -26,7 +26,4 @@ variable "db_password" {
   sensitive   = true
 }
 
-variable "codedeploy_role_arn" {
-  type = string
-  
-}
+
