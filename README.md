@@ -100,3 +100,13 @@ I chose Workflow dispatch because it eliminates accidental destroys and applies 
 | CI/CD       | GitHub Actions + OIDC        |
 
 ## Pipeline Screenshots for Build/Push, Tf apply, Tf plan and Tf Destroy
+
+## Build and Push
+
+##<img width="1852" height="929" alt="Screenshot 2026-04-14 183859" src="https://github.com/user-attachments/assets/a7713dcb-171d-4027-bb02-1fe8da9c79c5" />
+
+## Terraform Plan
+
+##<img width="1886" height="1027" alt="Screenshot 2026-04-15 231436" src="https://github.com/user-attachments/assets/a8b771f8-561c-485b-858f-f51ad8b2e95d" />
+
+
