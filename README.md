@@ -98,3 +98,5 @@ I chose Workflow dispatch because it eliminates accidental destroys and applies 
 | Firewall    | WAF                          |
 | IaC         | Terraform                    |
 | CI/CD       | GitHub Actions + OIDC        |
+
+## Pipeline Screenshots for Build/Push, Tf apply, Tf plan and Tf Destroy
