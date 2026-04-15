@@ -11,7 +11,7 @@ module "alb" {
     source = "./alb"
     vpc_id =   module.vpc.vpc_id
     public_subnets = module.vpc.public_subnets
-    acm_cert = module.acm.acm_cert
+    acm_cert = module.certs.acm_cert
     alb_sg = module.sg.alb_sg
   
 }
