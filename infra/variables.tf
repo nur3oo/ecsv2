@@ -1,7 +1,3 @@
-variable "cloudflare_api_token" {
-  type = string
-}
-
 variable "db_name" {
   description = "Name of the database"
   default = "database"
