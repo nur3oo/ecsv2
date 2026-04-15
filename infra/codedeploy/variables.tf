@@ -55,3 +55,8 @@ variable "deployment_config_name" {
     default = "CodeDeployDefault.ECSAllAtOnceue"
   
 }
+
+variable "codedeploy_role_arn" {
+    type = string
+  
+}

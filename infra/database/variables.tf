@@ -25,3 +25,8 @@ variable "db_password" {
   description = "Master password"
   sensitive   = true
 }
+
+variable "codedeploy_role_arn" {
+  type = string
+  
+}

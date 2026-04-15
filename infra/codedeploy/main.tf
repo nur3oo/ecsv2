@@ -7,7 +7,7 @@ resource "aws_codedeploy_deployment_group" "group" {
   app_name               = var.codedeploy_name
   deployment_config_name = var.deployment_config_name
   deployment_group_name  = var.deployment_group_name
-  service_role_arn       = aws_iam_role.example.arn
+  service_role_arn       = var.codedeploy_role_arn
 
   auto_rollback_configuration {
     enabled = true

@@ -23,3 +23,7 @@ output "ecs_lb" {
   
 }
 
+output "codedeploy_role_arn" {
+  value = aws_iam_role.codedeploy.arn
+}
+
