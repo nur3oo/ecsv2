@@ -38,7 +38,7 @@ resource "aws_codedeploy_deployment_group" "group" {
   load_balancer_info {
     target_group_pair_info {
       prod_traffic_route {
-        listener_arns = [var.alb_https_listener.arn]
+        listener_arns = [var.alb_https_listener]
       }
 
       target_group {

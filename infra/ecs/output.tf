@@ -24,7 +24,7 @@ output "cluster_name" {
 }
 
 output "ecs_service" {
-    value = aws_ecs_service.service.arn
+    value = aws_ecs_service.service.id
   
 }
 

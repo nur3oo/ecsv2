@@ -40,7 +40,6 @@ module "codedeploy" {
     ecs_service = module.ecs.ecs_service
     cluster_name = module.ecs.cluster_name
     codedeploy_role_arn = module.iam.codedeploy_role_arn
-
 }
 
 module "database" {
@@ -50,6 +49,7 @@ module "database" {
     db_name = var.db_name
     db_username = var.db_username
     db_password = var.db_password
+    rds_sg_id = module.sg.rds_sg_id
 
 }
 
