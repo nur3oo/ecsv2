@@ -9,7 +9,7 @@ resource "aws_lb_target_group" "blue" {
   name        = "alb-tg-blue"
   port        = 8080
   protocol    = "HTTP"
-  vpc_id      = var.aws_vpc.id
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {
@@ -28,7 +28,7 @@ resource "aws_lb_target_group" "green" {
   name        = "alb-tg-green"
   port        = 8080
   protocol    = "HTTP"
-  vpc_id      = var.aws_vpc.id
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {
