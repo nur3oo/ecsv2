@@ -48,7 +48,6 @@ module "database" {
     private_subnet_ids = module.vpc.private_subnets
     db_name = var.db_name
     db_username = var.db_username
-    db_password = var.db_password
     rds_sg_id = module.sg.rds_sg_id
 
 }
@@ -82,9 +81,7 @@ module "sg" {
 module "vpc" {
     source = "./vpc"
     endpoint_sg = module.sg.endpoint_sg
-    private_subnets = var.private_subnet_ids
-    public_subnets = var.public_subnets_ids
-    
+
   
 }
 
