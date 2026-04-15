@@ -57,3 +57,8 @@ variable "ecs_task_role_arn" {
     type = string
   
 }
+
+variable "rds_pass" {
+    type = string
+  
+}

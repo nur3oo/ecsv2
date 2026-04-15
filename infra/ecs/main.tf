@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "task" {
 
   secrets = [{
     name      = "DATABASE_URL"
-    valueFrom = data.aws_secretsmanager_secret.db_password.arn
+    valueFrom = var.rds_pass
   }]
 
   logConfiguration = {
@@ -41,12 +41,14 @@ resource "aws_ecs_task_definition" "task" {
       "awslogs-stream-prefix" = "ecs"
     }
   }
-}])
+}]
+)
 
 
+}
 
   
-}
+
 
 resource "aws_ecs_service" "service" {
     name = var.service_name

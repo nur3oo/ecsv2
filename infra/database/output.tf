@@ -13,3 +13,9 @@ output "rds_id" {
   value       = aws_db_instance.rds.id
 }
 
+output "rds_pass" {
+  description = "passwords for rds"
+  value = data.aws_secretsmanager_secret.db_password.arn
+  sensitive = true
+  
+}
