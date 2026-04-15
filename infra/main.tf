@@ -4,7 +4,9 @@ module "ecs" {
     ecs_sg = module.sg.ecs_sg
     private_subnet_ids = module.vpc.private_subnet_ids
     aws_lb_blue_target_group = module.alb.aws_lb_blue_target_group
-
+    rds_pass = module.database.rds_pass
+    ecs_execution_role_arn = module.ecs.ecr_execution_role_arn
+    ecs_task_role_arn = module.ecs_task_role_arn
 }
 
 module "alb" {
