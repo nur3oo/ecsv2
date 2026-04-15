@@ -49,7 +49,7 @@ resource "aws_security_group" "endpoint" {
     from_port = 443
     to_port = 443
     protocol = "tcp"
-    cidr_blocks = var.private_subnet_cidrs[*].id
+    cidr_blocks = var.private_subnet_cidrs
 
   }
 
