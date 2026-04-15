@@ -45,7 +45,7 @@ module "codedeploy" {
 module "database" {
     source = "./database"
     vpc_id = module.vpc.vpc_id
-    private_subnet_ids = module.vpc.private_subnets
+    private_subnet_ids = module.vpc.private_subnets_ids
     db_name = var.db_name
     db_username = var.db_username
     rds_sg_id = module.sg.rds_sg_id
@@ -68,7 +68,7 @@ module "redis" {
     source = "./redis"
     name = var.name
     redis_sg = module.sg.redis_sg
-    private_subnet_ids = module.vpc.private_subnets
+    private_subnet_ids = module.vpc.private_subnets_ids
   
 }
 
