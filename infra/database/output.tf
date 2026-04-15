@@ -13,7 +13,3 @@ output "rds_id" {
   value       = aws_db_instance.rds.id
 }
 
-output "rds_sg_id" {
-  description = "Security group ID for RDS"
-  value       = aws_security_group.rds.id
-}
