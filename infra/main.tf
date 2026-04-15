@@ -39,6 +39,7 @@ module "codedeploy" {
     aws_lb_green_target_group = module.alb.aws_lb_green_target_group
     ecs_service = module.ecs.ecs_service
     cluster_name = module.ecs.cluster_name
+    codedeploy_role_arn = module.iam.codedeploy_role_arn
 
 }
 
