@@ -63,6 +63,6 @@ resource "aws_wafv2_web_acl" "waf" {
 }
 
 resource "aws_wafv2_web_acl_association" "waf_alb" {
-  resource_arn = var.aws_alb.arn   
+  resource_arn = var.aws_alb  
   web_acl_arn  = aws_wafv2_web_acl.waf.arn
 }
