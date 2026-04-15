@@ -19,16 +19,3 @@ variable "name" {
   default = "redis"
   
 }
-
-##vpc
-
-variable "public_subnets_ids" {
-  type = list(string)
-
-  
-}
-
-variable "private_subnet_ids" {
-  type = list(string)
-  
-}
