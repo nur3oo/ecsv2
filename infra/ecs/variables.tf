@@ -11,7 +11,7 @@ variable "cluster_name" {
 
 
 variable "container_name" {
-    default = "nur-ecs2"
+    default = "nur-app"
     type = string
 
   

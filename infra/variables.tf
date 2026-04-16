@@ -1,6 +1,6 @@
 variable "db_name" {
   description = "Name of the database"
-  default = "database"
+  default = "appdb"
 }
 
 variable "db_username" {
