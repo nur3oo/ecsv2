@@ -60,3 +60,8 @@ variable "codedeploy_role_arn" {
     type = string
   
 }
+
+variable "ecs_service" {
+    type = string
+  
+}

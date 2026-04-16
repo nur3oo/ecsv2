@@ -9,6 +9,7 @@ resource "aws_codedeploy_deployment_group" "group" {
   deployment_group_name  = var.deployment_group_name
   service_role_arn       = var.codedeploy_role_arn
 
+
   auto_rollback_configuration {
     enabled = true
     events  = ["DEPLOYMENT_FAILURE"]
@@ -33,7 +34,10 @@ resource "aws_codedeploy_deployment_group" "group" {
   ecs_service {
     cluster_name = var.cluster_name
     service_name = var.service_name
+
   }
+  
+  depends_on = [ var.ecs_service ]
 
   load_balancer_info {
     target_group_pair_info {
