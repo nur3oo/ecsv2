@@ -52,7 +52,7 @@ variable "deployment_group_name" {
 
 variable "deployment_config_name" {
     type = string
-    default = "CodeDeployDefault.ECSAllAtOnceue"
+    default = "CodeDeployDefault.ECSAllAtOnce"
   
 }
 
