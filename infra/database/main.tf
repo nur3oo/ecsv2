@@ -26,7 +26,7 @@ resource "aws_db_instance" "rds" {
   multi_az               = true
   publicly_accessible    = false
   deletion_protection    = false
-  skip_final_snapshot    = false
+  skip_final_snapshot    = true
   final_snapshot_identifier = "prod-postgres"
 
   backup_retention_period = 7
