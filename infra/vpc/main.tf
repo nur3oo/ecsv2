@@ -70,7 +70,7 @@ resource "aws_vpc_endpoint" "secretsmanager" {
   vpc_id              = aws_vpc.main.id
   service_name        = "com.amazonaws.eu-west-2.secretsmanager"
   vpc_endpoint_type   = "Interface"
-  subnet_ids          = aws_subnet.private[count.index].id
+  subnet_ids          = aws_subnet.private[*].id
   security_group_ids  = [var.endpoint_sg]
   private_dns_enabled = true
 }
