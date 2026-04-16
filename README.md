@@ -129,6 +129,10 @@ I chose Workflow dispatch because it eliminates accidental destroys and applies 
 
 ##<img width="1886" height="1027" alt="Screenshot 2026-04-15 231436" src="https://github.com/user-attachments/assets/a8b771f8-561c-485b-858f-f51ad8b2e95d" />
 
+## Terraform Apply
+<img width="1883" height="1012" alt="Screenshot 2026-04-16 194544" src="https://github.com/user-attachments/assets/6721cbe0-6834-46fd-8849-b7a938e7bd84" />
+
+
 
 ## What I Would Do Differently
 
