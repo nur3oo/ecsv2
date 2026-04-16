@@ -3,5 +3,5 @@ variable "aws_region" {
 }
 
 variable "state_bucket_name" {
-  default = "s3-bucket"
+  default = "s3-bucket-ecv2"
 }
