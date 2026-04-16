@@ -16,7 +16,7 @@ resource "aws_security_group" "alb" {
       description = "to talk to the ecs task" 
       from_port = 8080
       to_port = 8080
-      protocol = "-1"
+      protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
 
     
