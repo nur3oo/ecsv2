@@ -2,11 +2,11 @@ module "ecs" {
     source = "./ecs"
     ecr_repository_url = module.ecr.ecr_repository_url
     ecs_sg = module.sg.ecs_sg
-    private_subnet_ids = module.vpc.private_subnets
     aws_lb_blue_target_group = module.alb.aws_lb_blue_target_group
     rds_pass = module.database.rds_pass
     ecs_execution_role_arn = module.iam.ecs_execution_role_arn
     ecs_task_role_arn = module.iam.ecs_task_role_arn
+    private_subnets = module.vpc.private_subnets
 }
 
 module "alb" {
@@ -82,7 +82,8 @@ module "vpc" {
     source = "./vpc"
     endpoint_sg = module.sg.endpoint_sg
 
-  
+
+
 }
 
 module "waf" {

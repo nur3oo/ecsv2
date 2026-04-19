@@ -22,7 +22,7 @@ variable "container_port" {
   default = "8080"
 }
 
-variable "private_subnet_ids" {
+variable "private_subnets" {
   type = list(string)
 }
 
