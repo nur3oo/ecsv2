@@ -26,17 +26,40 @@ resource "aws_security_group" "alb" {
 }
 
 resource "aws_security_group" "ecs" {
-    name = "ecs-sg"
-    vpc_id = var.vpc_id
+  name   = "ecs-sg"
+  vpc_id = var.vpc_id
 
   ingress {
-    description = "sg for ecs from alb"
-    from_port = 8080
-    to_port   = 8080
-    protocol  = "tcp"
+    description     = "from ALB"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
-      }
-  
+  }
+
+  # reach VPC endpoints (Secrets Manager, ECR, CloudWatch)
+  egress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  # reach RDS
+  egress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  # reach Redis
+  egress {
+    from_port   = 6379
+    to_port     = 6379
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
 }
 
 resource "aws_security_group" "endpoint" {
@@ -50,6 +73,7 @@ resource "aws_security_group" "endpoint" {
     to_port = 443
     protocol = "tcp"
     cidr_blocks = var.private_subnet_cidrs
+  
 
   }
 
