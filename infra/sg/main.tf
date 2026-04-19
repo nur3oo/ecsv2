@@ -121,8 +121,8 @@ resource "aws_security_group" "redis" {
 
   ingress {
     description     = "Redis from ECS tasks"
-    from_port       = 8080
-    to_port         = 8080
+    from_port       = 6379
+    to_port         = 6379
     protocol        = "tcp"
     security_groups = [aws_security_group.ecs.id]
   }
