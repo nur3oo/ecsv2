@@ -61,7 +61,7 @@ resource "aws_ecs_service" "service" {
     network_configuration {
       subnets = var.private_subnets
       security_groups = [var.ecs_sg]
-      assign_public_ip = false
+      assign_public_ip = true
     }
 
     deployment_controller {
