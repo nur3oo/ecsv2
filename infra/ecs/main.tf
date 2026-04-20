@@ -36,7 +36,7 @@ resource "aws_ecs_task_definition" "task" {
   logConfiguration = {
     logDriver = "awslogs"
     options = {
-      "awslogs-group"         = "/ecs/nur-app"
+      "awslogs-group"         = "ecs-logs"
       "awslogs-region"        = "eu-west-2"
       "awslogs-stream-prefix" = "ecs"
     }
