@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "blue" {
   health_check {
     protocol            = "HTTP"
     port                = "traffic-port"
-    path                = "/"
+    path                = "/healthz"
     matcher             = "200-399"
     interval            = 30
     timeout             = 5
@@ -34,7 +34,7 @@ resource "aws_lb_target_group" "green" {
   health_check {
     protocol            = "HTTP"
     port                = "traffic-port"
-    path                = "/"
+    path                = "/healthz"
     matcher             = "200-399"
     interval            = 30
     timeout             = 5
