@@ -37,9 +37,19 @@ resource "aws_db_instance" "rds" {
 }
 
 data "aws_secretsmanager_secret" "db_password" {
-  name = "database_url"  # pass for my database
+  name = "db_password"  # pass for my database
 }
 
 data "aws_secretsmanager_secret_version" "db_password" {
   secret_id = data.aws_secretsmanager_secret.db_password.id
+}
+
+resource "aws_secretsmanager_secret" "database_url" {
+  name = "database_url"
+}
+
+resource "aws_secretsmanager_secret_version" "db_url" {
+  secret_id     = aws_secretsmanager_secret.database_url.id
+  secret_string = "postgresql://${var.db_username}:${data.aws_secretsmanager_secret_version.db_password.secret_string}@${aws_db_instance.rds.address}:5432/${var.db_name}"
+
 }

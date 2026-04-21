@@ -14,8 +14,8 @@ output "rds_id" {
 }
 
 output "rds_pass" {
-  description = "passwords for rds"
-  value = data.aws_secretsmanager_secret.db_password.arn
+  description = "url for rds"
+  value = aws_secretsmanager_secret.database_url.arn
   sensitive = true
   
 }
