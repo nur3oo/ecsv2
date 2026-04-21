@@ -29,3 +29,8 @@ output "alb_https_listener" {
     value = aws_lb_listener.https.arn
   
 }
+
+output "alb_dns" {
+    value = aws_lb.alb.dns_name
+  
+}

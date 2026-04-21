@@ -21,11 +21,12 @@ module "alb" {
 module "bootstrap" {
     source = "./bootstrap"
 
-  
+
 }
 
 module "certs" {
     source = "./certs"
+    alb_dns = module.alb.alb_dns
 
   
 }

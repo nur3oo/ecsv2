@@ -19,4 +19,6 @@ provider "aws" {
   region = "eu-west-2"
 }
 
-provider "cloudflare" {}
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
