@@ -27,8 +27,7 @@ module "bootstrap" {
 module "certs" {
     source = "./certs"
     alb_dns = module.alb.alb_dns
-
-  
+    cloudflare_zone_id = var.cloudflare_zone_id
 }
 
 module "codedeploy" {
