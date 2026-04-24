@@ -3,6 +3,9 @@ name: Build, Push and Deploy
 on:
   push: 
     branches: [ 'main ']
+    paths:
+      - app/** ##this means when the app code changes it will trigger not when you run tf apply or update workflows
+      
 permissions:
   id-token: write
   contents: read
@@ -76,3 +79,5 @@ jobs:
           codedeploy-appspec: .github/workflows/appspec.json
           codedeploy-application: app
           codedeploy-deployment-group: ${{ vars.DEPLOYMENT_GROUP_NAME }}
+
+          ##this file is for updating the deployment - blue/green only.
