@@ -52,7 +52,7 @@ jobs:
       - name: Push image
         run: |
           docker push ${{ steps.build-image.outputs.image }}
-          docker tag ${{ steps.build-image.outputs.image }} ${{ steps.build-image.outputs.image == '' && '' || steps.build-image.outputs.image }}
+          docker tag ${{ steps.build-image.outputs.image }} $REGISTRY/$ECR_REPO:latest
           docker push $REGISTRY/$ECR_REPO:latest
 
       - name: Download task definition
