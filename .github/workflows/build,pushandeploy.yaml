@@ -45,7 +45,7 @@ jobs:
         with:
           image-ref: ${{ steps.build-image.outputs.image }}
           format: 'table'
-          exit-code: 0
+          exit-code: 1 ## so this fails the pipeline, so it doesn't push a bad image
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
 
