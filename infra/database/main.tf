@@ -45,7 +45,7 @@ data "aws_secretsmanager_secret_version" "db_password" {
 }
 
 resource "aws_secretsmanager_secret" "database_url" {
-  name = "database_url_1"
+  name = "database_url_100"
 }
 
 resource "aws_secretsmanager_secret_version" "db_url" {
