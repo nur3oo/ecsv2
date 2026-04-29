@@ -5,7 +5,7 @@
       "TargetService": {
         "Type": "AWS::ECS::Service",
         "Properties": {
-          "TaskDefinition": "",
+          "TaskDefinition": "", 
           "LoadBalancerInfo": {
             "ContainerName": "nur-app",
             "ContainerPort": 8080

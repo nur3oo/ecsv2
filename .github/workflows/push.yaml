@@ -50,3 +50,5 @@ jobs:
       - name: Output image tag
         run: |
           echo "Pushed image tag: ${{ github.sha }}"
+
+        ## this file is just for building the image and pushing to your repo and not deploying, incase you want to check 
