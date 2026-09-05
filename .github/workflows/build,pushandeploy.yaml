@@ -2,7 +2,7 @@ name: Build, Push and Deploy
 
 on:
   push: 
-    branches: [ 'main']
+    branches: [ 'main' ]
     paths:
       - app/** ##this means when the app code changes it will trigger not when you run tf apply or update workflows
       
