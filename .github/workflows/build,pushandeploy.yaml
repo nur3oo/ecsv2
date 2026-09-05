@@ -2,7 +2,7 @@ name: Build, Push and Deploy
 
 on:
   push: 
-    branches: [ 'main ']
+    branches: [ 'main']
     paths:
       - app/** ##this means when the app code changes it will trigger not when you run tf apply or update workflows
       
@@ -30,6 +30,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Login to ECR
+        id  : login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build image
@@ -50,6 +51,8 @@ jobs:
           ignore-unfixed: true
 
       - name: Push image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker push ${{ steps.build-image.outputs.image }}
           docker tag ${{ steps.build-image.outputs.image }} $REGISTRY/$ECR_REPO:latest
